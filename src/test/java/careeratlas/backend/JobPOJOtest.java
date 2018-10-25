@@ -1,11 +1,10 @@
 package careeratlas.backend;
 
-import careeratlas.backend.Job.Job;
+import careeratlas.backend.Domain.Job;
 import org.assertj.core.api.Assertions;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
-import java.time.ZonedDateTime;
 
 public class JobPOJOtest {
 
