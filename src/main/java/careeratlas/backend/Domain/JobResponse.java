@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.ZonedDateTime;
 
 @JsonAutoDetect
-public class Job {
+public class JobResponse {
 
     @JsonProperty
     private String company;
@@ -21,7 +21,7 @@ public class Job {
     @JsonProperty
     private String url;
 
-    public Job(String company, String positionTitle, String jobKey, String longitude, String latitude, String url) {
+    public JobResponse(String company, String positionTitle, String jobKey, String longitude, String latitude, String url) {
         this.company = company;
         this.positionTitle = positionTitle;
         this.jobKey = jobKey;
