@@ -66,5 +66,4 @@ public class JobSearch {
     public String getPublisher() {
         return publisher;
     }
-
 }

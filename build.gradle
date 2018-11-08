@@ -28,5 +28,9 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-data-mongodb')
     implementation('org.springframework.boot:spring-boot-starter-data-rest')
     implementation('org.springframework.boot:spring-boot-starter-mail')
+    compile 'org.glassfish.jersey.core:jersey-client:2.26'
+    compile 'org.glassfish.jersey.inject:jersey-hk2:2.26'
+    compile 'org.glassfish.jersey.media:jersey-media-json-processing:2.26'
+    compile 'org.glassfish.jersey.media:jersey-media-json-binding:2.26'
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
