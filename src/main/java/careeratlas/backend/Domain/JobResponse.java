@@ -3,8 +3,6 @@ package careeratlas.backend.Domain;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.ZonedDateTime;
-
 @JsonAutoDetect
 public class JobResponse {
 
@@ -37,24 +35,12 @@ public class JobResponse {
         return jobKey;
     }
 
-    public void setJobKey(String jobKey) {
-        this.jobKey = jobKey;
-    }
-
     public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
     public String getLatitude() {
         return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
     }
 
     public String getUrl() {
@@ -69,15 +55,7 @@ public class JobResponse {
         return company;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
     public String getPositionTitle() {
         return positionTitle;
-    }
-
-    public void setPositionTitle(String positionTitle) {
-        this.positionTitle = positionTitle;
     }
 }
