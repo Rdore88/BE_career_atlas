@@ -21,15 +21,14 @@ public class JobSearchServiceImpl implements JobSearchService {
         Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.get();
 
-        HashMap output = response.readEntity(HashMap.class);
-        ArrayList<HashMap> newOutput = ((ArrayList<HashMap>) output.get("results"));
-        ArrayList<JobResponse> finalOutput = new ArrayList<JobResponse>();
-        for (HashMap var : newOutput)
+        ArrayList<HashMap> indeedSearchResults = ((ArrayList<HashMap>) response.readEntity(HashMap.class).get("results"));
+        ArrayList<JobResponse> parsedSearchResults = new ArrayList<JobResponse>();
+        for (HashMap var : indeedSearchResults)
         {
             JobResponse job = new JobResponse(var.get("company").toString(), var.get("jobtitle").toString(), var.get("jobkey").toString(), var.get("longitude").toString(), var.get("latitude").toString(), var.get("url").toString(), var.get("snippet").toString());
-            finalOutput.add(job);
+            parsedSearchResults.add(job);
         }
-        return finalOutput;
+        return parsedSearchResults;
     }
 
 }
