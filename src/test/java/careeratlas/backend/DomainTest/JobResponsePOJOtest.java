@@ -11,7 +11,7 @@ public class JobResponsePOJOtest {
     @Test
     public void shouldConstruct() {
         JobResponse jobResponse = new JobResponse("The Home Depot", "Software Developer", "12345abcde", "-84.4986169",
-                "33.9176691", "www.homedepot.com/careers");
+                "33.9176691", "www.homedepot.com/careers", "This is the best job in the world");
 
         Assertions.assertThat(jobResponse)
                 .as("not a null reference")

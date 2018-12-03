@@ -16,7 +16,7 @@ public class JobSearchPOJOTest {
                 .as("not null references")
                 .isNotNull();
 
-        Assert.assertThat(jobSearch.getQ(), Matchers.equalToIgnoringCase("software developer"));
-        Assert.assertThat(jobSearch.getSt(), Matchers.equalToIgnoringCase("jobsite"));
+        Assert.assertThat(jobSearch.getJobTitle(), Matchers.equalToIgnoringCase("software developer"));
+        Assert.assertThat(jobSearch.getJobSite(), Matchers.equalToIgnoringCase("jobsite"));
     }
 }
