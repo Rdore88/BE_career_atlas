@@ -20,14 +20,17 @@ public class JobResponse {
     private String latitude;
     @JsonProperty
     private String url;
+    @JsonProperty
+    private String snippet;
 
-    public JobResponse(String company, String positionTitle, String jobKey, String longitude, String latitude, String url) {
+    public JobResponse(String company, String positionTitle, String jobKey, String longitude, String latitude, String url, String snippet) {
         this.company = company;
         this.positionTitle = positionTitle;
         this.jobKey = jobKey;
         this.longitude = longitude;
         this.latitude = latitude;
         this.url = url;
+        this.snippet = snippet;
     }
 
     public String getJobKey() {
