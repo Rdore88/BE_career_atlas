@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 @RestController
@@ -24,5 +25,12 @@ public class JobSearchController {
     @ResponseStatus(HttpStatus.OK)
     public ArrayList<JobResponse> getJobsFromIndeed(@RequestParam String jobTitle, @RequestParam String jobType, @RequestParam String distance, @RequestParam String location) {
         return jobSearchService.searchJobs(jobTitle, jobType, distance, location);
+    }
+
+    @CrossOrigin
+    @RequestMapping(path = "/glassdoor", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public void getGlassdoorInfo(@RequestParam String company) {
+        jobSearchService.searchCompanyOnGlassdoor(company);
     }
 }

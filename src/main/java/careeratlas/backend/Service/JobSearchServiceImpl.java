@@ -1,5 +1,6 @@
 package careeratlas.backend.Service;
 
+import careeratlas.backend.Domain.GlassDoorSearch;
 import careeratlas.backend.Domain.JobResponse;
 import careeratlas.backend.Domain.JobSearch;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,19 @@ public class JobSearchServiceImpl implements JobSearchService {
             parsedSearchResults.add(job);
         }
         return parsedSearchResults;
+    }
+
+    @Override
+    public void  searchCompanyOnGlassdoor(String company){
+        GlassDoorSearch glassDoorSearch = new GlassDoorSearch(company);
+        Client client = ClientBuilder.newClient();
+        WebTarget webTarget = client.target(glassDoorSearch.getUrl());
+        Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
+        Response response = invocationBuilder.get();
+
+        Object glassdoorResults = response.readEntity(ArrayList.class);
+        System.out.println(glassdoorResults);
+
     }
 
 }
