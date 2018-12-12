@@ -9,9 +9,9 @@ public class JobResponse {
     @JsonProperty
     private String company;
     @JsonProperty
-    private String positionTitle;
+    private String jobtitle;
     @JsonProperty
-    private String jobKey;
+    private String jobkey;
     @JsonProperty
     private String longitude;
     @JsonProperty
@@ -21,18 +21,30 @@ public class JobResponse {
     @JsonProperty
     private String snippet;
 
-    public JobResponse(String company, String positionTitle, String jobKey, String longitude, String latitude, String url, String snippet) {
+    public void setCompany(String company) {
         this.company = company;
-        this.positionTitle = positionTitle;
-        this.jobKey = jobKey;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setSnippet(String snippet) {
+        this.snippet = snippet;
+    }
+
+    public JobResponse(String company, String jobtitle, String jobkey, String longitude, String latitude, String url, String snippet) {
+        this.company = company;
+        this.jobtitle = jobtitle;
+        this.jobkey = jobkey;
         this.longitude = longitude;
         this.latitude = latitude;
         this.url = url;
         this.snippet = snippet;
-    }
-
-    public String getJobKey() {
-        return jobKey;
     }
 
     public String getLongitude() {
@@ -55,7 +67,23 @@ public class JobResponse {
         return company;
     }
 
-    public String getPositionTitle() {
-        return positionTitle;
+    public String getSnippet() {
+        return snippet;
+    }
+
+    public String getJobtitle() {
+        return jobtitle;
+    }
+
+    public void setJobtitle(String jobtitle) {
+        this.jobtitle = jobtitle;
+    }
+
+    public String getJobkey() {
+        return jobkey;
+    }
+
+    public void setJobkey(String jobkey) {
+        this.jobkey = jobkey;
     }
 }

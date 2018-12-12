@@ -1,9 +1,15 @@
 package careeratlas.backend.Service;
 
+import careeratlas.backend.Domain.IndeedResponse;
 import careeratlas.backend.Domain.JobResponse;
 import careeratlas.backend.Domain.JobSearch;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
@@ -14,21 +20,24 @@ import java.util.HashMap;
 public class JobSearchServiceImpl implements JobSearchService {
 
     @Override
-    public ArrayList<JobResponse> searchJobs(String jobTitle, String jobType, String distance, String location){
+    public IndeedResponse searchJobs(String jobTitle, String jobType, String distance, String location){
         JobSearch jobSearch = new JobSearch(location, jobTitle, distance, jobType);
         Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target(jobSearch.getUrl());
         Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.get();
 
-        ArrayList<HashMap> indeedSearchResults = ((ArrayList<HashMap>) response.readEntity(HashMap.class).get("results"));
-        ArrayList<JobResponse> parsedSearchResults = new ArrayList<JobResponse>();
-        for (HashMap var : indeedSearchResults)
-        {
-            JobResponse job = new JobResponse(var.get("company").toString(), var.get("jobtitle").toString(), var.get("jobkey").toString(), var.get("longitude").toString(), var.get("latitude").toString(), var.get("url").toString(), var.get("snippet").toString());
-            parsedSearchResults.add(job);
+        String indeedSearchResults = response.readEntity(String.class);
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        IndeedResponse indeedResponse = null;
+        try {
+            indeedResponse = mapper.readValue(indeedSearchResults, IndeedResponse.class);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return parsedSearchResults;
+
+        return indeedResponse;
     }
 
 }

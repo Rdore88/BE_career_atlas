@@ -1,5 +1,6 @@
 package careeratlas.backend.Controller;
 
+import careeratlas.backend.Domain.IndeedResponse;
 import careeratlas.backend.Domain.JobResponse;
 import careeratlas.backend.Service.JobSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class JobSearchController {
     @CrossOrigin
     @RequestMapping(path = "/indeed", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public ArrayList<JobResponse> getJobsFromIndeed(@RequestParam String jobTitle, @RequestParam String jobType, @RequestParam String distance, @RequestParam String location) {
+    public IndeedResponse getJobsFromIndeed(@RequestParam String jobTitle, @RequestParam String jobType, @RequestParam String distance, @RequestParam String location) {
         return jobSearchService.searchJobs(jobTitle, jobType, distance, location);
     }
 }
