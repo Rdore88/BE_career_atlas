@@ -64,7 +64,7 @@ public class JobSearch {
     }
 
     public String getUrl() {
-        String url = String.format("http://api.indeed.com/ads/apisearch?publisher=%s&q=%s&l=%s&sort=&radius=%s&st=&jt=%s&start=&limit=&fromage=&filter=&latlong=%s&co=us&format=json&v=%s", System.getenv("INDEED_API_KEY"), this.getJobTitle(), this.getLocation(), this.getDistance(), this.getJobType(), this.getLatlong(), this.getV());
+        String url = String.format("http://api.indeed.com/ads/apisearch?publisher=%s&q=%s&l=%s&sort=&radius=%s&st=&jt=%s&start=&limit=%s&fromage=&filter=&latlong=%s&co=us&format=json&v=%s", System.getenv("INDEED_API_KEY"), this.getJobTitle(), this.getLocation(), this.getDistance(), this.getJobType(), this.getLimit(), this.getLatlong(), this.getV());
         return url;
     }
 }
