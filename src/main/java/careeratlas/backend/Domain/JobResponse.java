@@ -1,24 +1,16 @@
 package careeratlas.backend.Domain;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonAutoDetect
 public class JobResponse {
 
-    @JsonProperty
     private String company;
-    @JsonProperty
     private String jobtitle;
-    @JsonProperty
     private String jobkey;
-    @JsonProperty
     private String longitude;
-    @JsonProperty
     private String latitude;
-    @JsonProperty
     private String url;
-    @JsonProperty
     private String snippet;
 
     public void setCompany(String company) {
@@ -37,7 +29,8 @@ public class JobResponse {
         this.snippet = snippet;
     }
 
-    public JobResponse(String company, String jobtitle, String jobkey, String longitude, String latitude, String url, String snippet) {
+    @JsonCreator
+    public JobResponse(@JsonProperty("company") String company, @JsonProperty("jobtitle") String jobtitle, @JsonProperty("jobkey") String jobkey, @JsonProperty("longitude") String longitude, @JsonProperty("latitude") String latitude,@JsonProperty("url") String url, @JsonProperty("snippet") String snippet) {
         this.company = company;
         this.jobtitle = jobtitle;
         this.jobkey = jobkey;

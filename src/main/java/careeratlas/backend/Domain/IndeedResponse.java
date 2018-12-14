@@ -1,6 +1,7 @@
 package careeratlas.backend.Domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -11,15 +12,18 @@ import javax.validation.constraints.NotEmpty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class IndeedResponse {
 
-    @JsonProperty
     private String location;
-    @JsonProperty
     private String radius;
-    @JsonProperty
     private String totalResults;
-    @JsonProperty
-    @NotEmpty
     private List<JobResponse> results;
+
+    @JsonCreator
+    public IndeedResponse(@JsonProperty("location") String location, @JsonProperty("radius") String radius, @JsonProperty("totalResults") String totalResults,  @JsonProperty("results") List<JobResponse> results) {
+        this.location = location;
+        this.radius = radius;
+        this.totalResults = totalResults;
+        this.results = results;
+    }
 
     public String getLocation() {
         return location;
