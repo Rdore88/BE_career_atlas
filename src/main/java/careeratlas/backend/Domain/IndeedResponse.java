@@ -15,6 +15,7 @@ public class IndeedResponse {
     private String location;
     private String radius;
     private String totalResults;
+    @NotEmpty
     private List<JobResponse> results;
 
     @JsonCreator

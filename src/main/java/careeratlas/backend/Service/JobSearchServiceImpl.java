@@ -1,20 +1,16 @@
 package careeratlas.backend.Service;
 
 import careeratlas.backend.Domain.IndeedResponse;
-import careeratlas.backend.Domain.JobResponse;
 import careeratlas.backend.Domain.JobSearch;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.HashMap;
 
 @Service
 public class JobSearchServiceImpl implements JobSearchService {
