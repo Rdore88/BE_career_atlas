@@ -13,10 +13,11 @@ import javax.ws.rs.core.Response;
 @Service
 public class JobSearchServiceImpl implements JobSearchService {
 
+    private Client client = ClientBuilder.newClient();
+
     @Override
-    public IndeedResponse searchJobs(String jobTitle, String jobType, String distance, String location){
-        JobSearch jobSearch = new JobSearch(location, jobTitle, distance, jobType);
-        Client client = ClientBuilder.newClient();
+    public IndeedResponse searchJobs(JobSearch jobSearch){
+
         WebTarget webTarget = client.target(jobSearch.getUrl());
         Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.get();
