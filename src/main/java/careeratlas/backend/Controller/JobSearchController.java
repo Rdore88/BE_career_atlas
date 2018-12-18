@@ -1,19 +1,17 @@
 package careeratlas.backend.Controller;
 
 import careeratlas.backend.Domain.IndeedResponse;
-import careeratlas.backend.Domain.JobResponse;
 import careeratlas.backend.Service.JobSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
 
 
 @RestController
 @RequestMapping("/api/jobSearch")
 public class JobSearchController {
 
-    JobSearchService jobSearchService;
+    private JobSearchService jobSearchService;
 
     @Autowired
     public JobSearchController(final JobSearchService jobSearchService) {

@@ -7,7 +7,6 @@ public class IndeedResponse {
     private String location;
     private String radius;
     private String totalResults;
-    private String status;
     private String query;
     private List<JobResponse> results;
 
@@ -52,14 +51,6 @@ public class IndeedResponse {
 
     public void setResults(List<JobResponse> results) {
         this.results = results;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getQuery() {

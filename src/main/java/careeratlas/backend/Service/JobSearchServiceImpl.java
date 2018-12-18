@@ -30,13 +30,6 @@ public class JobSearchServiceImpl implements JobSearchService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        if (indeedResponse == null) {
-            indeedResponse.setStatus("500");
-            return indeedResponse;
-        } else {
-            indeedResponse.setStatus("200");
-            return indeedResponse;
-        }
+        return indeedResponse;
     }
 }
