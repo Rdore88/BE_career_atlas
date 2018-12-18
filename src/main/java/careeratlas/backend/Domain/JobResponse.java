@@ -1,6 +1,5 @@
 package careeratlas.backend.Domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class JobResponse {
@@ -13,23 +12,6 @@ public class JobResponse {
     private String url;
     private String snippet;
 
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setSnippet(String snippet) {
-        this.snippet = snippet;
-    }
-
-    @JsonCreator
     public JobResponse(@JsonProperty("company") String company, @JsonProperty("jobtitle") String jobtitle, @JsonProperty("jobkey") String jobkey, @JsonProperty("longitude") String longitude, @JsonProperty("latitude") String latitude,@JsonProperty("url") String url, @JsonProperty("snippet") String snippet) {
         this.company = company;
         this.jobtitle = jobtitle;
@@ -40,28 +22,12 @@ public class JobResponse {
         this.snippet = snippet;
     }
 
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getCompany() {
         return company;
     }
 
-    public String getSnippet() {
-        return snippet;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getJobtitle() {
@@ -78,5 +44,37 @@ public class JobResponse {
 
     public void setJobkey(String jobkey) {
         this.jobkey = jobkey;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getSnippet() {
+        return snippet;
+    }
+
+    public void setSnippet(String snippet) {
+        this.snippet = snippet;
     }
 }

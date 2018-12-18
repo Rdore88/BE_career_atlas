@@ -21,7 +21,7 @@ public class JobSearchController {
     }
 
     @CrossOrigin
-    @RequestMapping(path = "/indeed", method = RequestMethod.GET)
+    @GetMapping(path = "/indeed")
     @ResponseStatus(HttpStatus.OK)
     public IndeedResponse getJobsFromIndeed(@RequestParam String jobTitle, @RequestParam String jobType, @RequestParam String distance, @RequestParam String location) {
         return jobSearchService.searchJobs(jobTitle, jobType, distance, location);
