@@ -7,13 +7,19 @@ public class IndeedResponse {
     private String location;
     private String radius;
     private String totalResults;
+    private String status;
+    private String query;
     private List<JobResponse> results;
 
-    public IndeedResponse(@JsonProperty("location") String location, @JsonProperty("radius") String radius, @JsonProperty("totalResults") String totalResults,  @JsonProperty("results") List<JobResponse> results) {
+    public IndeedResponse(@JsonProperty("location") String location, @JsonProperty("radius") String radius,
+                          @JsonProperty("totalResults") String totalResults,  @JsonProperty("results") List<JobResponse> results,
+                          @JsonProperty("query") String query
+    ) {
         this.location = location;
         this.radius = radius;
         this.totalResults = totalResults;
         this.results = results;
+        this.query = query;
     }
 
     public String getLocation() {
@@ -46,5 +52,21 @@ public class IndeedResponse {
 
     public void setResults(List<JobResponse> results) {
         this.results = results;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
     }
 }

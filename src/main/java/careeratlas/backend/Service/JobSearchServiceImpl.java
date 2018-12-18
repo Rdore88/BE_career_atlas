@@ -4,12 +4,8 @@ import careeratlas.backend.Domain.IndeedResponse;
 import careeratlas.backend.Domain.JobSearch;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.glassfish.jersey.internal.Errors;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
-import java.util.Optional;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -34,6 +30,13 @@ public class JobSearchServiceImpl implements JobSearchService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return indeedResponse;
+
+        if (indeedResponse == null) {
+            indeedResponse.setStatus("500");
+            return indeedResponse;
+        } else {
+            indeedResponse.setStatus("200");
+            return indeedResponse;
+        }
     }
 }
