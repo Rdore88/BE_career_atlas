@@ -1,12 +1,12 @@
 package careeratlas.backend.Controller;
 
+import careeratlas.backend.Domain.GlassDoorResponse;
 import careeratlas.backend.Domain.JobResponse;
 import careeratlas.backend.Service.JobSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 @RestController
@@ -28,9 +28,9 @@ public class JobSearchController {
     }
 
     @CrossOrigin
-    @RequestMapping(path = "/glassdoor", method = RequestMethod.GET)
+    @GetMapping(path = "/glassdoor")
     @ResponseStatus(HttpStatus.OK)
-    public void getGlassdoorInfo(@RequestParam String company) {
-        jobSearchService.searchCompanyOnGlassdoor(company);
+    public GlassDoorResponse getGlassdoorInfo(@RequestParam String company) {
+        return jobSearchService.searchCompanyOnGlassdoor(company);
     }
 }

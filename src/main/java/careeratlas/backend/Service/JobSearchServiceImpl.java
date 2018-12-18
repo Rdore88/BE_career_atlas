@@ -1,11 +1,16 @@
 package careeratlas.backend.Service;
 
+import careeratlas.backend.Domain.GlassDoorResponse;
 import careeratlas.backend.Domain.GlassDoorSearch;
 import careeratlas.backend.Domain.JobResponse;
 import careeratlas.backend.Domain.JobSearch;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
-
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -33,15 +38,28 @@ public class JobSearchServiceImpl implements JobSearchService {
     }
 
     @Override
-    public void  searchCompanyOnGlassdoor(String company){
+    public GlassDoorResponse  searchCompanyOnGlassdoor(String company){
         GlassDoorSearch glassDoorSearch = new GlassDoorSearch(company);
         Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target(glassDoorSearch.getUrl());
         Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.get();
 
-        Object glassdoorResults = response.readEntity(ArrayList.class);
-        System.out.println(glassdoorResults);
+        JsonObject glassdoorSearchResults = response.readEntity(JsonObject.class);
+        JsonObject glassdoorResults = ( (JsonObject) glassdoorSearchResults.get("response"));
+        JsonArray employers = ((JsonArray) glassdoorResults.get("employers"));
+        JsonObject searchCompany = ( (JsonObject) employers.get(0));
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        GlassDoorResponse glassDoorResponse = null;
+
+        try {
+            glassDoorResponse = mapper.readValue(searchCompany.toString(), GlassDoorResponse.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return glassDoorResponse;
 
     }
 
