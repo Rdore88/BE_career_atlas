@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 @RestController
@@ -30,7 +31,16 @@ public class JobSearchController {
     @CrossOrigin
     @GetMapping(path = "/glassdoor")
     @ResponseStatus(HttpStatus.OK)
-    public GlassDoorResponse getGlassdoorInfo(@RequestParam String company) {
-        return jobSearchService.searchCompanyOnGlassdoor(company);
+    public Object getGlassdoorInfo(@RequestParam String company) {
+        GlassDoorResponse glassDoorResponse = jobSearchService.searchCompanyOnGlassdoor(company);
+        if (glassDoorResponse != null ){
+            glassDoorResponse.setStatus("200");
+            return glassDoorResponse;
+        } else {
+            HashMap<String, String> nullResponse = new HashMap<String, String>();
+            nullResponse.put("Status", "500");
+            nullResponse.put("Message", "Could not find company");
+            return nullResponse;
+        }
     }
 }

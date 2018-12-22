@@ -15,6 +15,7 @@ import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
+import java.util.Optional;
 
 @Service
 public class JobSearchServiceImpl implements JobSearchService {
@@ -48,19 +49,20 @@ public class JobSearchServiceImpl implements JobSearchService {
         JsonObject glassdoorSearchResults = response.readEntity(JsonObject.class);
         JsonObject glassdoorResults = ( (JsonObject) glassdoorSearchResults.get("response"));
         JsonArray employers = ((JsonArray) glassdoorResults.get("employers"));
-        JsonObject searchCompany = ( (JsonObject) employers.get(0));
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         GlassDoorResponse glassDoorResponse = null;
-
-        try {
-            glassDoorResponse = mapper.readValue(searchCompany.toString(), GlassDoorResponse.class);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (employers.isEmpty()) {
+            return glassDoorResponse;
+        } else {
+            JsonObject searchCompany = ( (JsonObject) employers.get(0));
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+            try {
+                glassDoorResponse = mapper.readValue(searchCompany.toString(), GlassDoorResponse.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return glassDoorResponse;
         }
-
-        return glassDoorResponse;
-
     }
 
 }
