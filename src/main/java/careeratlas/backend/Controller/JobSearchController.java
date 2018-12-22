@@ -1,6 +1,7 @@
 package careeratlas.backend.Controller;
 
 import careeratlas.backend.Domain.GlassDoorResponse;
+import careeratlas.backend.Domain.GlassDoorSearch;
 import careeratlas.backend.Domain.JobResponse;
 import careeratlas.backend.Service.JobSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,8 @@ public class JobSearchController {
     @GetMapping(path = "/glassdoor")
     @ResponseStatus(HttpStatus.OK)
     public Object getGlassdoorInfo(@RequestParam String company) {
-        GlassDoorResponse glassDoorResponse = jobSearchService.searchCompanyOnGlassdoor(company);
+        GlassDoorSearch glassDoorSearch = new GlassDoorSearch(company)
+        GlassDoorResponse glassDoorResponse = jobSearchService.searchCompanyOnGlassdoor(glassDoorSearch);
         if (glassDoorResponse != null ){
             glassDoorResponse.setStatus("200");
             return glassDoorResponse;

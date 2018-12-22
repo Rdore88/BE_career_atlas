@@ -39,8 +39,7 @@ public class JobSearchServiceImpl implements JobSearchService {
     }
 
     @Override
-    public GlassDoorResponse  searchCompanyOnGlassdoor(String company){
-        GlassDoorSearch glassDoorSearch = new GlassDoorSearch(company);
+    public GlassDoorResponse  searchCompanyOnGlassdoor(GlassDoorSearch glassDoorSearch){
         Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target(glassDoorSearch.getUrl());
         Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
