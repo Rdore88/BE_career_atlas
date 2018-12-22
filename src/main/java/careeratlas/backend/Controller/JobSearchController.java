@@ -33,7 +33,7 @@ public class JobSearchController {
     @GetMapping(path = "/glassdoor")
     @ResponseStatus(HttpStatus.OK)
     public Object getGlassdoorInfo(@RequestParam String company) {
-        GlassDoorSearch glassDoorSearch = new GlassDoorSearch(company)
+        GlassDoorSearch glassDoorSearch = new GlassDoorSearch(company);
         GlassDoorResponse glassDoorResponse = jobSearchService.searchCompanyOnGlassdoor(glassDoorSearch);
         if (glassDoorResponse != null ){
             glassDoorResponse.setStatus("200");
