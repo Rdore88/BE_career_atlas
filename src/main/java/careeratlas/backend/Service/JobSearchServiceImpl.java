@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 @Service
 public class JobSearchServiceImpl implements JobSearchService {
 
-    private Client client = ClientBuilder.newClient();
+    final static private Client client = ClientBuilder.newClient();
 
     @Override
     public IndeedResponse searchJobs(JobSearch jobSearch){
