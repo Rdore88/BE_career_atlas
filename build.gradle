@@ -33,4 +33,5 @@ dependencies {
     compile 'org.glassfish.jersey.media:jersey-media-json-processing:2.26'
     compile 'org.glassfish.jersey.media:jersey-media-json-binding:2.26'
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+    compile 'org.json:json:20171018'
 }
