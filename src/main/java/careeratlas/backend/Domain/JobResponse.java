@@ -1,46 +1,65 @@
 package careeratlas.backend.Domain;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonAutoDetect
 public class JobResponse {
 
-    @JsonProperty
     private String company;
-    @JsonProperty
-    private String positionTitle;
-    @JsonProperty
-    private String jobKey;
-    @JsonProperty
+    private String jobtitle;
+    private String jobkey;
     private String longitude;
-    @JsonProperty
     private String latitude;
-    @JsonProperty
     private String url;
-    @JsonProperty
     private String snippet;
 
-    public JobResponse(String company, String positionTitle, String jobKey, String longitude, String latitude, String url, String snippet) {
+    public JobResponse(@JsonProperty("company") String company, @JsonProperty("jobtitle") String jobtitle, @JsonProperty("jobkey") String jobkey, @JsonProperty("longitude") String longitude, @JsonProperty("latitude") String latitude,@JsonProperty("url") String url, @JsonProperty("snippet") String snippet) {
         this.company = company;
-        this.positionTitle = positionTitle;
-        this.jobKey = jobKey;
+        this.jobtitle = jobtitle;
+        this.jobkey = jobkey;
         this.longitude = longitude;
         this.latitude = latitude;
         this.url = url;
         this.snippet = snippet;
     }
 
-    public String getJobKey() {
-        return jobKey;
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getJobtitle() {
+        return jobtitle;
+    }
+
+    public void setJobtitle(String jobtitle) {
+        this.jobtitle = jobtitle;
+    }
+
+    public String getJobkey() {
+        return jobkey;
+    }
+
+    public void setJobkey(String jobkey) {
+        this.jobkey = jobkey;
     }
 
     public String getLongitude() {
         return longitude;
     }
 
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
     public String getLatitude() {
         return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 
     public String getUrl() {
@@ -51,11 +70,11 @@ public class JobResponse {
         this.url = url;
     }
 
-    public String getCompany() {
-        return company;
+    public String getSnippet() {
+        return snippet;
     }
 
-    public String getPositionTitle() {
-        return positionTitle;
+    public void setSnippet(String snippet) {
+        this.snippet = snippet;
     }
 }
