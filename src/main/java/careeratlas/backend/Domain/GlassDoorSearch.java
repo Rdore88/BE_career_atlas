@@ -8,10 +8,6 @@ public class GlassDoorSearch {
     private String action = "employers";
     private String company;
 
-    public GlassDoorSearch(String company){
-        this.company = company;
-    }
-
     public String getVersion() {
         return version;
     }
@@ -26,6 +22,10 @@ public class GlassDoorSearch {
 
     public String getCompany() {
         return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getUrl() {

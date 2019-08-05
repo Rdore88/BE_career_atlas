@@ -10,7 +10,11 @@ public class JobSearchPOJOTest {
 
     @Test
     public void shouldConstruct() {
-        JobSearch jobSearch = new JobSearch("30308", "Software Developer", "25", "fulltime");
+        JobSearch jobSearch = new JobSearch();
+        jobSearch.setLocation("30308");
+        jobSearch.setDistance("25");
+        jobSearch.setJobTitle("Software Developer");
+        jobSearch.setJobType("fulltime");
 
         Assertions.assertThat(jobSearch)
                 .as("not null references")

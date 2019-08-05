@@ -13,7 +13,7 @@ public class GlassDoorResponse {
     private String careerOpportunitiesRating;
     private String workLifeBalanceRating;
     private String recommendToFriendRating;
-    private String status;
+
     public GlassDoorResponse(@JsonProperty("website") String website,
                              @JsonProperty("squareLogo") String squareLogo,
                              @JsonProperty("overallRating") String overallRating,
@@ -104,13 +104,5 @@ public class GlassDoorResponse {
 
     public void setRecommendToFriendRating(String recommendToFriendRating) {
         this.recommendToFriendRating = recommendToFriendRating;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }
