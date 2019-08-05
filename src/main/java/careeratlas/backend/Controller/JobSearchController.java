@@ -3,15 +3,12 @@ package careeratlas.backend.Controller;
 
 import careeratlas.backend.Domain.GlassDoorResponse;
 import careeratlas.backend.Domain.GlassDoorSearch;
-import careeratlas.backend.Domain.JobResponse;
 import careeratlas.backend.Domain.IndeedResponse;
 import careeratlas.backend.Domain.JobSearch;
 import careeratlas.backend.Service.JobSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 
 @RestController
@@ -26,27 +23,16 @@ public class JobSearchController {
     }
 
     @CrossOrigin
-    @GetMapping(path = "/indeed")
+    @RequestMapping(path="/indeed", method = RequestMethod.POST, produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public IndeedResponse getJobsFromIndeed(@RequestParam String jobTitle, @RequestParam String jobType, @RequestParam String distance, @RequestParam String location) {
-        JobSearch jobSearch = new JobSearch(location, jobTitle, distance, jobType);
+    public IndeedResponse getJobSearchFromIndeed(@RequestBody JobSearch jobSearch) {
         return jobSearchService.searchJobs(jobSearch);
     }
 
     @CrossOrigin
-    @GetMapping(path = "/glassdoor")
+    @RequestMapping(path = "/glassdoor", method = RequestMethod.POST, produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public Object getGlassdoorInfo(@RequestParam String company) {
-        GlassDoorSearch glassDoorSearch = new GlassDoorSearch(company);
-        GlassDoorResponse glassDoorResponse = jobSearchService.searchCompanyOnGlassdoor(glassDoorSearch);
-        if (glassDoorResponse != null ){
-            glassDoorResponse.setStatus("200");
-            return glassDoorResponse;
-        } else {
-            HashMap<String, String> nullResponse = new HashMap<String, String>();
-            nullResponse.put("Status", "500");
-            nullResponse.put("Message", "Could not find company");
-            return nullResponse;
-        }
+    public GlassDoorResponse getGlassdoorInfo(@RequestBody GlassDoorSearch glassDoorSearch) {
+        return jobSearchService.searchCompanyOnGlassdoor(glassDoorSearch);
     }
 }
